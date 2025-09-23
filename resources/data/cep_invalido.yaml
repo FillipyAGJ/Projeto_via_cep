@@ -1,0 +1,3 @@
+cep_invalido: '00000000'
+cep_malformado: 'abc123'
+cep_malformado_2: '123'
