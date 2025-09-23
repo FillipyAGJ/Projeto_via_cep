@@ -2,7 +2,7 @@
 Resource    ../config/config.resource
 Resource    ../resources/keywords/keywords.resource
 Resource    ../resources/keywords/gerar_pdf.resource
-
+Suite Teardown    Mesclar PDFs Da Execução (Python)
 *** Test Cases ***
 Executar teste em amostra
     [Template]    Testar CEP

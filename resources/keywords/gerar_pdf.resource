@@ -74,3 +74,22 @@ Gerar PDF com log
     ${html}=    Catenate    SEPARATOR=\n    @{parts}
     Html To Pdf    ${html}    ${out}
     RETURN    ${out}
+
+
+Mesclar PDFs Da Execução
+    ${pdf_dir}=    Set Variable    ${EXECDIR}${/}output${/}pdf
+    Directory Should Exist    ${pdf_dir}
+    ${arquivos}=   List Files In Directory    ${pdf_dir}    pattern=*.pdf    absolute=True
+    Should Not Be Empty    ${arquivos}
+    Sort List    ${arquivos}
+    ${alvo}=      Set Variable    ${EXECDIR}${/}output${/}execucao.pdf
+    # Algumas versões do RPA.PDF têm "Add Files To PDF", outras "Merge PDFs".
+    # Tente esta primeiro:
+    Run Keyword And Ignore Error    Add Files To PDF    ${arquivos}    ${alvo}
+    ${status}    ${msg}=    Run Keyword And Ignore Error    Merge PDFs    ${arquivos}    ${alvo}
+    Run Keyword If    '${status}'=='FAIL'    Fail    Não foi possível mesclar PDFs: ${msg}
+    Log    PDFs mesclados em: ${alvo}
+
+Mesclar PDFs Da Execução (Python)
+    ${saida}=    Merge Pdfs    input_dir=output/pdf    pattern=*.pdf    out=output/execucao.pdf
+    Log    PDFs mesclados em: ${saida}
