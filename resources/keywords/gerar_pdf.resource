@@ -2,7 +2,6 @@
 Resource    ../../config/config.resource
 Resource    ../request/request.robot
 
-
 *** Keywords ***
 
 Gerar PDF deste teste

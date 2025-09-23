@@ -1,6 +1,7 @@
 *** Settings ***
 Resource    ../../config/config.resource
 Resource    ../request/request.robot
+Resource    ./gerar_pdf.resource
 
 *** Variables ***
 ${CEP_SCHEMA_PATH}    ${CURDIR}/../../schemas/cep_schema.json
@@ -61,3 +62,38 @@ Consultar CEP e Validar Sucesso
     RETURN    ${response}    ${status}    ${url_utilizada}    ${metodo}    ${headers}
     
     
+Testar CEP
+    [Arguments]    ${cep}    ${situacao}
+    IF    $situacao == 'valido'
+        Teste tempo CEP válido    ${cep}
+    ELSE IF    $situacao == 'invalido'
+        Teste CEP inexistente    ${cep}
+    ELSE IF    $situacao == 'malformado'
+        Teste tempo CEP malformado    ${cep}
+    END
+
+Teste tempo CEP válido
+    [Arguments]    ${cep}
+    ${response}    ${status}    ${url}    ${metodo}    ${headers}=    Get CEP    ${cep}
+    ${secs}=    Evaluate    $response.elapsed.total_seconds()
+    ${tempo_ms}=    Evaluate    int(round($secs * 1000))
+    Should Be True    $secs < 2    msg=Tempo de resposta ${secs}s >= 2s
+
+    # teardown gera o PDF com o tempo
+    [Teardown]    _Gerar PDF deste teste    Tempo CEP válido ${cep}    ${response}    ${status}    ${url}    ${metodo}    ${headers}    ${tempo_ms}
+
+Teste CEP inexistente
+    [Arguments]    ${cep}
+    ${response}    ${status}    ${url}    ${metodo}    ${headers}=    Valida CEP    ${cep}
+    [Teardown]    _Gerar PDF deste teste    CEP inexistente ${cep}    ${response}    ${status}    ${url}    ${metodo}    ${headers}
+
+
+Teste tempo CEP malformado
+    [Arguments]    ${cep}
+    ${response}    ${status}    ${url}    ${metodo}    ${headers}=    Get CEP    ${cep}
+    ${secs}=    Evaluate    $response.elapsed.total_seconds()
+    ${tempo_ms}=    Evaluate    int(round($secs * 1000))
+    # mesmo sendo 4xx, ainda precisa ser rápido
+    Should Be True    $secs < 2    msg=Tempo de resposta ${secs}s >= 2s (malformado)
+
+    [Teardown]    _Gerar PDF deste teste    Tempo CEP malformado ${cep}    ${response}    ${status}    ${url}    ${metodo}    ${headers}    ${tempo_ms}
