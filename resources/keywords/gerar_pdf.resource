@@ -5,22 +5,30 @@ Resource    ../request/request.robot
 *** Keywords ***
 
 Gerar PDF deste teste
-    [Arguments]    ${nome}    ${response}=None    ${status}=None    ${url}=None    ${metodo}=None    ${headers}=None    ${tempo_ms}=None
+    [Arguments]    ${nome}=${None}    ${cep}=${None}    ${response}=${None}    ${status}=${None}    ${url}=${None}
+    ...    ${metodo}=${None}    ${headers}=${None}    ${tempo_ms}=${None}
     Create Directory    output/pdf
-    ${safe}=    Replace String    ${nome}    ${SPACE}    -
-    ${out}=     Set Variable    output/pdf/${safe}.pdf
-
-    ${pdf}=    Gerar PDF com log
+    # Gera o nome do arquivo PDF
+    ${safe_nome}=    Replace String    ${nome}    ${SPACE}    -
+    ${pdf_nome}=     Set Variable    Tempo_CEP_${safe_nome}_${cep}.pdf
+    ${pdf_path}=     Set Variable    output/pdf/${pdf_nome}
+    
+    # Gera o conteúdo do PDF
+    ${out}=    Gerar PDF com log
     ...    nome_consulta=${nome}
     ...    response=${response}
     ...    status=${status}
     ...    url_utilizada=${url}
     ...    metodo=${metodo}
     ...    headers=${headers}
-    ...    out=${out}
     ...    tempo_ms=${tempo_ms}
+    ...    out=${pdf_path}
 
-    Log To Console    PDF gerado: ${pdf}
+    Attach File     ${pdf_path}    name=Relatório ${nome}    attachment_type=application/pdf
+
+    Log    PDF gerado em: ${pdf_path}
+    RETURN    ${pdf_path}
+
 
 
 Gerar PDF com log
