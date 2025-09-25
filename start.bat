@@ -1,1 +1,0 @@
-robot --outputdir output --listener "allure_robotframework;output/allure-results" tests/

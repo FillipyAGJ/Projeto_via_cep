@@ -5,7 +5,6 @@ Library    RPA.PDF
 Library    DateTime
 Library    OperatingSystem
 Library    ../libs/schema_keywords.py
-Library    ../libs/pdf_merge.py
 
 *** Variables ***
 ${BASE_URL}    http://viacep.com.br

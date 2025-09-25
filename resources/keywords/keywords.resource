@@ -18,7 +18,7 @@ Consulta CEP valido
     Dictionary Should Contain Key    ${json}    uf
     Dictionary Should Contain Key    ${json}    cep
     RETURN    ${response}    ${status}    ${url_utilizada}    ${metodo}
-    ...    ${headers}    
+    ...    ${headers}   
 
 Valida CEP
     [Arguments]    ${cep}
@@ -80,12 +80,12 @@ Teste tempo CEP válido
     Should Be True    $secs < 2    msg=Tempo de resposta ${secs}s >= 2s
 
     # teardown gera o PDF com o tempo
-    [Teardown]    _Gerar PDF deste teste    Tempo CEP válido ${cep}    ${response}    ${status}    ${url}    ${metodo}    ${headers}    ${tempo_ms}
+    [Teardown]    _Gerar PDF deste teste    CEP válido ${cep} com tempo de resposta    ${cep}    ${response}    ${status}    ${url}    ${metodo}    ${headers}    ${tempo_ms}
 
 Teste CEP inexistente
     [Arguments]    ${cep}
     ${response}    ${status}    ${url}    ${metodo}    ${headers}=    Valida CEP    ${cep}
-    [Teardown]    _Gerar PDF deste teste    CEP inexistente ${cep}    ${response}    ${status}    ${url}    ${metodo}    ${headers}
+    [Teardown]    _Gerar PDF deste teste    CEP inexistente ${cep}     ${cep}    ${response}    ${status}    ${url}    ${metodo}    ${headers}
 
 
 Teste tempo CEP malformado
@@ -96,4 +96,4 @@ Teste tempo CEP malformado
     # mesmo sendo 4xx, ainda precisa ser rápido
     Should Be True    $secs < 2    msg=Tempo de resposta ${secs}s >= 2s (malformado)
 
-    [Teardown]    _Gerar PDF deste teste    Tempo CEP malformado ${cep}    ${response}    ${status}    ${url}    ${metodo}    ${headers}    ${tempo_ms}
+    [Teardown]    _Gerar PDF deste teste    CEP malformado ${cep} com tempo de resposta     ${cep}    ${response}    ${status}    ${url}    ${metodo}    ${headers}    ${tempo_ms}

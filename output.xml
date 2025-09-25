@@ -1,0 +1,1125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.2 (Python 3.12.6 on win32)" generated="2025-09-25T11:42:23.204217" rpa="false" schemaversion="5">
+<suite id="s1" name="Test Cep" source="c:\workspace\Projeto_via_cep\tests\test_cep.robot">
+<test id="s1-t1" name="Executar Teste de JSON" line="16">
+<kw name="Consulta CEP valido" owner="keywords">
+<kw name="Get CEP" owner="request">
+<kw name="Replace String" owner="String">
+<msg time="2025-09-25T11:42:23.956176" level="INFO">${endpoint} = ws/01001000/json</msg>
+<var>${endpoint}</var>
+<arg>${ENDPOINT_CONSULTA_CEP}</arg>
+<arg>:cep:</arg>
+<arg>${cep}</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="PASS" start="2025-09-25T11:42:23.956176" elapsed="0.004010"/>
+</kw>
+<kw name="GET" owner="RequestsLibrary">
+<msg time="2025-09-25T11:42:24.327797" level="INFO">GET Request : url=http://viacep.com.br/ws/01001000/json 
+ path_url=/ws/01001000/json 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2025-09-25T11:42:24.328793" level="INFO">GET Response : url=http://viacep.com.br/ws/01001000/json 
+ status=200, reason=OK 
+ headers={'Server': 'nginx/1.22.0', 'Date': 'Thu, 25 Sep 2025 14:42:07 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Expires': 'Thu, 25 Sep 2025 15:42:07 GMT', 'Cache-Control': 'max-age=3600, public', 'Pragma': 'public', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET', 'Access-Control-Allow-Headers': 'Content-Type, X-Request-With, X-Requested-By', 'Access-Control-Allow-Credentials': 'true', 'Access-Control-Max-Age': '86400'} 
+ body={
+  "cep": "01001-000",
+  "logradouro": "Praça da Sé",
+  "complemento": "lado ímpar",
+  "unidade": "",
+  "bairro": "Sé",
+  "localidade": "São Paulo",
+  "uf": "SP",
+  "estado": "São Paulo",
+  "regiao": "Sudeste",
+  "ibge": "3550308",
+  "gia": "1004",
+  "ddd": "11",
+  "siafi": "7107"
+} 
+ </msg>
+<msg time="2025-09-25T11:42:24.329796" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>url=${BASE_URL}/${endpoint}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a GET request.</doc>
+<status status="PASS" start="2025-09-25T11:42:23.960186" elapsed="0.369610"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-09-25T11:42:24.330793" level="INFO">${status} = 200</msg>
+<var>${status}</var>
+<arg>${response.status_code}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.329796" elapsed="0.000997"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-09-25T11:42:24.331825" level="INFO">${url_utilizada} = http://viacep.com.br/ws/01001000/json</msg>
+<var>${url_utilizada}</var>
+<arg>${response.url}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.330793" elapsed="0.001032"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-09-25T11:42:24.332792" level="INFO">${metodo} = GET</msg>
+<var>${metodo}</var>
+<arg>${response.request.method}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.331825" elapsed="0.000967"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-09-25T11:42:24.332792" level="INFO">${headers} = {'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive'}</msg>
+<var>${headers}</var>
+<arg>${response.request.headers}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.332792" elapsed="0.001030"/>
+</kw>
+<return>
+<value>${response}</value>
+<value>${status}</value>
+<value>${url_utilizada}</value>
+<value>${metodo}</value>
+<value>${headers}</value>
+<status status="PASS" start="2025-09-25T11:42:24.333822" elapsed="0.000000"/>
+</return>
+<msg time="2025-09-25T11:42:24.333822" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<msg time="2025-09-25T11:42:24.334794" level="INFO">${status} = 200</msg>
+<msg time="2025-09-25T11:42:24.334794" level="INFO">${url_utilizada} = http://viacep.com.br/ws/01001000/json</msg>
+<msg time="2025-09-25T11:42:24.334794" level="INFO">${metodo} = GET</msg>
+<msg time="2025-09-25T11:42:24.335792" level="INFO">${headers} = {'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive'}</msg>
+<var>${response}</var>
+<var>${status}</var>
+<var>${url_utilizada}</var>
+<var>${metodo}</var>
+<var>${headers}</var>
+<arg>${cep}</arg>
+<status status="PASS" start="2025-09-25T11:42:23.955176" elapsed="0.380616"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-09-25T11:42:24.335792" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.335792" elapsed="0.000998"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-09-25T11:42:24.336790" level="INFO">${json} = {'cep': '01001-000', 'logradouro': 'Praça da Sé', 'complemento': 'lado ímpar', 'unidade': '', 'bairro': 'Sé', 'localidade': 'São Paulo', 'uf': 'SP', 'estado': 'São Paulo', 'regiao': 'Sudeste', 'ibge':...</msg>
+<var>${json}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.336790" elapsed="0.000000"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json}</arg>
+<arg>logradouro</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.337822" elapsed="0.000000"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json}</arg>
+<arg>bairro</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.337822" elapsed="0.000000"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json}</arg>
+<arg>localidade</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.337822" elapsed="0.000969"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json}</arg>
+<arg>uf</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.338791" elapsed="0.001004"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json}</arg>
+<arg>cep</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.339795" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${response}</value>
+<value>${status}</value>
+<value>${url_utilizada}</value>
+<value>${metodo}</value>
+<value>${headers}</value>
+<status status="PASS" start="2025-09-25T11:42:24.340790" elapsed="0.000000"/>
+</return>
+<msg time="2025-09-25T11:42:24.340790" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<msg time="2025-09-25T11:42:24.342792" level="INFO">${status} = 200</msg>
+<msg time="2025-09-25T11:42:24.342792" level="INFO">${url_utilizada} = http://viacep.com.br/ws/01001000/json</msg>
+<msg time="2025-09-25T11:42:24.342792" level="INFO">${metodo} = GET</msg>
+<msg time="2025-09-25T11:42:24.342792" level="INFO">${headers} = {'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive'}</msg>
+<var>${response}</var>
+<var>${status}</var>
+<var>${url_utilizada}</var>
+<var>${metodo}</var>
+<var>${headers}</var>
+<arg>01001000</arg>
+<status status="PASS" start="2025-09-25T11:42:23.955176" elapsed="0.387616"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>-- Body &lt;${response.json()} &gt;</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.344793" elapsed="0.002001"/>
+</kw>
+<kw name="Validar JSON Por Schema" owner="schema_keywords">
+<msg time="2025-09-25T11:42:24.352810" level="INFO">${mensagem} = {'sucesso': True, 'mensagem': 'JSON validado com sucesso', 'schema_content': '{\n  "$schema": "http://json-schema.org/draft-07/schema#",\n  "type": "object",\n  "additionalProperties": true,\n  "prope...</msg>
+<var>${mensagem}</var>
+<arg>${response.json()}</arg>
+<arg>${EXECDIR}/resources/data/schemas/cep_schema.json</arg>
+<doc>Valida um dicionário JSON `body` contra um schema em `schema_path`.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.347793" elapsed="0.005017"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>-- Mensagem validada &lt;${mensagem}&gt; --</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.353805" elapsed="0.000988"/>
+</kw>
+<kw name="Gerar PDF deste teste" owner="gerar_pdf">
+<kw name="Create Directory" owner="OperatingSystem">
+<msg time="2025-09-25T11:42:24.357814" level="INFO" html="true">Directory '&lt;a href="file://C:\workspace\Projeto_via_cep\output\pdf"&gt;C:\workspace\Projeto_via_cep\output\pdf&lt;/a&gt;' already exists.</msg>
+<arg>output/pdf</arg>
+<doc>Creates the specified directory.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.356794" elapsed="0.002010"/>
+</kw>
+<kw name="Replace String" owner="String">
+<msg time="2025-09-25T11:42:24.359811" level="INFO">${safe} = Teste-de-schema-json</msg>
+<var>${safe}</var>
+<arg>${nome}</arg>
+<arg>${SPACE}</arg>
+<arg>-</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.359811" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-09-25T11:42:24.360802" level="INFO">${out} = output/pdf/Teste-de-schema-json.pdf</msg>
+<var>${out}</var>
+<arg>output/pdf/${safe}.pdf</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.360802" elapsed="0.000000"/>
+</kw>
+<kw name="Gerar PDF com log" owner="gerar_pdf">
+<if>
+<branch type="IF" condition="$out is None">
+<kw name="Get Current Date" owner="DateTime">
+<var>${ts}</var>
+<arg>result_format=%Y%m%d-%H%M%S</arg>
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.364801" elapsed="0.000000"/>
+</kw>
+<kw name="Replace String" owner="String">
+<var>${safe}</var>
+<arg>${nome_consulta}</arg>
+<arg>${SPACE}</arg>
+<arg>-</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.364801" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<var>${out}</var>
+<arg>output/pdf/${ts}_${safe}.pdf</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.365818" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2025-09-25T11:42:24.363801" elapsed="0.002017"/>
+</branch>
+<status status="PASS" start="2025-09-25T11:42:24.363801" elapsed="0.002017"/>
+</if>
+<kw name="Create List" owner="BuiltIn">
+<msg time="2025-09-25T11:42:24.366801" level="INFO">@{parts} = [ ]</msg>
+<var>@{parts}</var>
+<doc>Returns a list containing given items.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.365818" elapsed="0.000983"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${parts}</arg>
+<arg>&lt;html&gt;&lt;body style="font-family:Arial,Helvetica,sans-serif;max-width:820px;margin:0 auto;padding:20px;text-align:center"&gt;</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.366801" elapsed="0.001007"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${parts}</arg>
+<arg>&lt;h2 style="text-align:center;color:#1757C2;margin-bottom:10px"&gt;${nome_consulta}&lt;/h2&gt;</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.367808" elapsed="0.000999"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Append To List" owner="Collections">
+<arg>${parts}</arg>
+<arg>&lt;p style="text-align:center"&gt;&lt;b&gt;Status:&lt;/b&gt; ${status}&lt;/p&gt;</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.368807" elapsed="0.000000"/>
+</kw>
+<arg>$status != None</arg>
+<arg>Append To List</arg>
+<arg>${parts}</arg>
+<arg>&lt;p style="text-align:center"&gt;&lt;b&gt;Status:&lt;/b&gt; ${status}&lt;/p&gt;</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.368807" elapsed="0.001007"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Append To List" owner="Collections">
+<arg>${parts}</arg>
+<arg>&lt;p style="text-align:center"&gt;&lt;b&gt;URL:&lt;/b&gt; ${url_utilizada}&lt;/p&gt;</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.369814" elapsed="0.000993"/>
+</kw>
+<arg>$url_utilizada != None</arg>
+<arg>Append To List</arg>
+<arg>${parts}</arg>
+<arg>&lt;p style="text-align:center"&gt;&lt;b&gt;URL:&lt;/b&gt; ${url_utilizada}&lt;/p&gt;</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.369814" elapsed="0.000993"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Append To List" owner="Collections">
+<arg>${parts}</arg>
+<arg>&lt;p style="text-align:center"&gt;&lt;b&gt;Massa de CEP:&lt;/b&gt; ${cep}&lt;/p&gt;</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.371806" elapsed="0.000000"/>
+</kw>
+<arg>$cep != None</arg>
+<arg>Append To List</arg>
+<arg>${parts}</arg>
+<arg>&lt;p style="text-align:center"&gt;&lt;b&gt;Massa de CEP:&lt;/b&gt; ${cep}&lt;/p&gt;</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.370807" elapsed="0.001509"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>$metodo != None</arg>
+<arg>Append To List</arg>
+<arg>${parts}</arg>
+<arg>&lt;p style="text-align:center"&gt;&lt;b&gt;Método:&lt;/b&gt; ${metodo}&lt;/p&gt;</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.372316" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Append To List" owner="Collections">
+<arg>${parts}</arg>
+<arg>&lt;p style="text-align:center"&gt;&lt;b&gt;Schema json de validação:&lt;/b&gt; ${mensagem}&lt;/p&gt;</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.373334" elapsed="0.000000"/>
+</kw>
+<arg>$mensagem != None</arg>
+<arg>Append To List</arg>
+<arg>${parts}</arg>
+<arg>&lt;p style="text-align:center"&gt;&lt;b&gt;Schema json de validação:&lt;/b&gt; ${mensagem}&lt;/p&gt;</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.372316" elapsed="0.001018"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>$tempo_ms != None</arg>
+<arg>Append To List</arg>
+<arg>${parts}</arg>
+<arg>&lt;p style="text-align:center"&gt;&lt;b&gt;Tempo de resposta:&lt;/b&gt; ${tempo_ms} ms&lt;/p&gt;</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.374328" elapsed="0.000000"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${parts}</arg>
+<arg>&lt;hr style="border:none;border-top:2px solid #1757C2;margin:20px 0;width:80%;"&gt;</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.375325" elapsed="0.000000"/>
+</kw>
+<if>
+<branch type="IF" condition="$headers != None">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<var>${is_response}</var>
+<arg>Should Contain</arg>
+<arg>${headers.__class__.__name__}</arg>
+<arg>Response</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.376324" elapsed="0.001002"/>
+</kw>
+<if>
+<branch type="IF" condition="${is_response}">
+<kw name="Set Variable" owner="BuiltIn">
+<var>${hdrs}</var>
+<arg>${headers.request.headers}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.377326" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2025-09-25T11:42:24.377326" elapsed="0.000000"/>
+</branch>
+<branch type="ELSE">
+<kw name="Set Variable" owner="BuiltIn">
+<var>${hdrs}</var>
+<arg>${headers}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.378325" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2025-09-25T11:42:24.377326" elapsed="0.000999"/>
+</branch>
+<status status="NOT RUN" start="2025-09-25T11:42:24.377326" elapsed="0.000999"/>
+</if>
+<kw name="Run Keyword And Ignore Error" owner="BuiltIn">
+<var>${json_status}</var>
+<var>${json_headers}</var>
+<arg>Evaluate</arg>
+<arg>json.dumps(dict($hdrs), ensure_ascii=False, indent=4)</arg>
+<arg>modules=json</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.378325" elapsed="0.000000"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${parts}</arg>
+<arg>&lt;div style="margin:20px 0;text-align:left"&gt;&lt;h3 style="text-align:center;color:#1757C2;"&gt;Headers&lt;/h3&gt;</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.379352" elapsed="0.000000"/>
+</kw>
+<if>
+<branch type="IF" condition="'${json_status}' == 'PASS'">
+<kw name="Replace String" owner="String">
+<var>${json_escaped}</var>
+<arg>${json_headers}</arg>
+<arg>&amp;</arg>
+<arg>&amp;amp;</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.380330" elapsed="0.000000"/>
+</kw>
+<kw name="Replace String" owner="String">
+<var>${json_escaped}</var>
+<arg>${json_escaped}</arg>
+<arg>&lt;</arg>
+<arg>&amp;lt;</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.381325" elapsed="0.000000"/>
+</kw>
+<kw name="Replace String" owner="String">
+<var>${json_escaped}</var>
+<arg>${json_escaped}</arg>
+<arg>&gt;</arg>
+<arg>&amp;gt;</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.381325" elapsed="0.000000"/>
+</kw>
+<kw name="Replace String" owner="String">
+<var>${json_escaped}</var>
+<arg>${json_escaped}</arg>
+<arg>\n</arg>
+<arg>&lt;br/&gt;</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.381325" elapsed="0.001000"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${parts}</arg>
+<arg>&lt;div style="background:#f5f5f5;padding:15px;border-radius:6px;font-family:'Courier New',monospace;font-size:12px;white-space:pre-line;overflow-wrap:break-word;"&gt;${json_escaped}&lt;/div&gt;</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.382325" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2025-09-25T11:42:24.379352" elapsed="0.003973"/>
+</branch>
+<branch type="ELSE">
+<kw name="Replace String" owner="String">
+<var>${hdrs_escaped}</var>
+<arg>${hdrs}</arg>
+<arg>&amp;</arg>
+<arg>&amp;amp;</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.383325" elapsed="0.000000"/>
+</kw>
+<kw name="Replace String" owner="String">
+<var>${hdrs_escaped}</var>
+<arg>${hdrs_escaped}</arg>
+<arg>&lt;</arg>
+<arg>&amp;lt;</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.383325" elapsed="0.000997"/>
+</kw>
+<kw name="Replace String" owner="String">
+<var>${hdrs_escaped}</var>
+<arg>${hdrs_escaped}</arg>
+<arg>&gt;</arg>
+<arg>&amp;gt;</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.384322" elapsed="0.000000"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${parts}</arg>
+<arg>&lt;div style="background:#f5f5f5;padding:15px;border-radius:6px;font-family:'Courier New',monospace;font-size:12px;"&gt;${hdrs_escaped}&lt;/div&gt;</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.384322" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2025-09-25T11:42:24.383325" elapsed="0.000997"/>
+</branch>
+<status status="NOT RUN" start="2025-09-25T11:42:24.379352" elapsed="0.004970"/>
+</if>
+<kw name="Append To List" owner="Collections">
+<arg>${parts}</arg>
+<arg>&lt;/div&gt;</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.385350" elapsed="0.000000"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${parts}</arg>
+<arg>&lt;hr style="border:none;border-top:2px solid #1757C2;margin:20px 0;width:80%;"&gt;</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.385350" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2025-09-25T11:42:24.376324" elapsed="0.009026"/>
+</branch>
+<status status="PASS" start="2025-09-25T11:42:24.376324" elapsed="0.009026"/>
+</if>
+<if>
+<branch type="IF" condition="$response != None">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2025-09-25T11:42:24.386325" level="INFO">Length is 284.</msg>
+<arg>${response.text}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.386325" elapsed="0.000996"/>
+</kw>
+<msg time="2025-09-25T11:42:24.387321" level="INFO">${has_text_status} = True</msg>
+<var>${has_text_status}</var>
+<arg>Should Not Be Empty</arg>
+<arg>${response.text}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.386325" elapsed="0.000996"/>
+</kw>
+<if>
+<branch type="IF" condition="${has_text_status}">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-09-25T11:42:24.388330" level="INFO">${text} = {
+  "cep": "01001-000",
+  "logradouro": "Praça da Sé",
+  "complemento": "lado ímpar",
+  "unidade": "",
+  "bairro": "Sé",
+  "localidade": "São Paulo",
+  "uf": "SP",
+  "estado": "São Paulo",
+  "regiao":...</msg>
+<var>${text}</var>
+<arg>${response.text}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.387321" elapsed="0.002003"/>
+</kw>
+<status status="PASS" start="2025-09-25T11:42:24.387321" elapsed="0.002003"/>
+</branch>
+<branch type="ELSE">
+<kw name="Set Variable" owner="BuiltIn">
+<var>${text}</var>
+<arg>${response}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.390324" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2025-09-25T11:42:24.390324" elapsed="0.000000"/>
+</branch>
+<status status="PASS" start="2025-09-25T11:42:24.387321" elapsed="0.004006"/>
+</if>
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Should Contain" owner="BuiltIn">
+<msg time="2025-09-25T11:42:24.392327" level="FAIL">'{
+  "cep": "01001-000",
+  "logradouro": "Praça da Sé",
+  "complemento": "lado ímpar",
+  "unidade": "",
+  "bairro": "Sé",
+  "localidade": "São Paulo",
+  "uf": "SP",
+  "estado": "São Paulo",
+  "regiao": "Sudeste",
+  "ibge": "3550308",
+  "gia": "1004",
+  "ddd": "11",
+  "siafi": "7107"
+}' does not contain '&lt;!DOCTYPE'</msg>
+<arg>${text}</arg>
+<arg>&lt;!DOCTYPE</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="FAIL" start="2025-09-25T11:42:24.391327" elapsed="0.002026">'{
+  "cep": "01001-000",
+  "logradouro": "Praça da Sé",
+  "complemento": "lado ímpar",
+  "unidade": "",
+  "bairro": "Sé",
+  "localidade": "São Paulo",
+  "uf": "SP",
+  "estado": "São Paulo",
+  "regiao": "Sudeste",
+  "ibge": "3550308",
+  "gia": "1004",
+  "ddd": "11",
+  "siafi": "7107"
+}' does not contain '&lt;!DOCTYPE'</status>
+</kw>
+<msg time="2025-09-25T11:42:24.394332" level="INFO">${is_html} = False</msg>
+<var>${is_html}</var>
+<arg>Should Contain</arg>
+<arg>${text}</arg>
+<arg>&lt;!DOCTYPE</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.391327" elapsed="0.003005"/>
+</kw>
+<if>
+<branch type="IF" condition="${is_html}">
+<kw name="Set Variable" owner="BuiltIn">
+<var>${title}</var>
+<arg>${EMPTY}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.395325" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<var>${title_start}</var>
+<arg>Should Contain</arg>
+<arg>${text}</arg>
+<arg>&lt;title&gt;</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.395325" elapsed="0.000000"/>
+</kw>
+<if>
+<branch type="IF" condition="${title_start}">
+<kw name="Split String" owner="String">
+<var>${parts_title}</var>
+<arg>${text}</arg>
+<arg>&lt;title&gt;</arg>
+<arg>1</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.396324" elapsed="0.000000"/>
+</kw>
+<kw name="Get From List" owner="Collections">
+<var>${title_part}</var>
+<arg>${parts_title}</arg>
+<arg>1</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.396324" elapsed="0.000000"/>
+</kw>
+<kw name="Split String" owner="String">
+<var>${parts_title_end}</var>
+<arg>${title_part}</arg>
+<arg>&lt;/title&gt;</arg>
+<arg>1</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.396324" elapsed="0.000000"/>
+</kw>
+<kw name="Get From List" owner="Collections">
+<var>${title}</var>
+<arg>${parts_title_end}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.397323" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2025-09-25T11:42:24.396324" elapsed="0.000999"/>
+</branch>
+<status status="NOT RUN" start="2025-09-25T11:42:24.396324" elapsed="0.000999"/>
+</if>
+<kw name="Set Variable" owner="BuiltIn">
+<var>${body_content}</var>
+<arg>${EMPTY}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.397323" elapsed="0.000000"/>
+</kw>
+<kw name="Get Regexp Matches" owner="String">
+<var>${h1_matches}</var>
+<arg>${text}</arg>
+<arg>&lt;h1[^&gt;]*&gt;(.*?)&lt;/h1&gt;</arg>
+<arg>1</arg>
+<doc>Returns a list of all non-overlapping matches in the given string.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.397323" elapsed="0.000000"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Catenate" owner="BuiltIn">
+<var>${body_content}</var>
+<arg>${body_content}</arg>
+<arg>${h1}</arg>
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.398323" elapsed="0.000000"/>
+</kw>
+<var name="${h1}"/>
+<status status="NOT RUN" start="2025-09-25T11:42:24.398323" elapsed="0.000000"/>
+</iter>
+<var>${h1}</var>
+<value>@{h1_matches}</value>
+<status status="NOT RUN" start="2025-09-25T11:42:24.397323" elapsed="0.001000"/>
+</for>
+<kw name="Get Regexp Matches" owner="String">
+<var>${h2_matches}</var>
+<arg>${text}</arg>
+<arg>&lt;h2[^&gt;]*&gt;(.*?)&lt;/h2&gt;</arg>
+<arg>1</arg>
+<doc>Returns a list of all non-overlapping matches in the given string.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.399332" elapsed="0.000000"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Catenate" owner="BuiltIn">
+<var>${body_content}</var>
+<arg>${body_content}</arg>
+<arg>${h2}</arg>
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.399332" elapsed="0.000000"/>
+</kw>
+<var name="${h2}"/>
+<status status="NOT RUN" start="2025-09-25T11:42:24.399332" elapsed="0.001001"/>
+</iter>
+<var>${h2}</var>
+<value>@{h2_matches}</value>
+<status status="NOT RUN" start="2025-09-25T11:42:24.399332" elapsed="0.001001"/>
+</for>
+<kw name="Get Regexp Matches" owner="String">
+<var>${h3_matches}</var>
+<arg>${text}</arg>
+<arg>&lt;h3[^&gt;]*&gt;(.*?)&lt;/h3&gt;</arg>
+<arg>1</arg>
+<doc>Returns a list of all non-overlapping matches in the given string.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.400333" elapsed="0.000000"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Catenate" owner="BuiltIn">
+<var>${body_content}</var>
+<arg>${body_content}</arg>
+<arg>${h3}</arg>
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.401334" elapsed="0.000000"/>
+</kw>
+<var name="${h3}"/>
+<status status="NOT RUN" start="2025-09-25T11:42:24.401334" elapsed="0.000996"/>
+</iter>
+<var>${h3}</var>
+<value>@{h3_matches}</value>
+<status status="NOT RUN" start="2025-09-25T11:42:24.401334" elapsed="0.000996"/>
+</for>
+<kw name="Get Regexp Matches" owner="String">
+<var>${p_matches}</var>
+<arg>${text}</arg>
+<arg>&lt;p[^&gt;]*&gt;(.*?)&lt;/p&gt;</arg>
+<arg>1</arg>
+<doc>Returns a list of all non-overlapping matches in the given string.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.402330" elapsed="0.000000"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Catenate" owner="BuiltIn">
+<var>${body_content}</var>
+<arg>${body_content}</arg>
+<arg>${p}</arg>
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.402330" elapsed="0.000000"/>
+</kw>
+<var name="${p}"/>
+<status status="NOT RUN" start="2025-09-25T11:42:24.402330" elapsed="0.001032"/>
+</iter>
+<var>${p}</var>
+<value>@{p_matches}</value>
+<status status="NOT RUN" start="2025-09-25T11:42:24.402330" elapsed="0.001032"/>
+</for>
+<kw name="Set Variable" owner="BuiltIn">
+<var>${final_content}</var>
+<arg>${EMPTY}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.403362" elapsed="0.000000"/>
+</kw>
+<if>
+<branch type="IF" condition="'${title}' != '${EMPTY}'">
+<kw name="Catenate" owner="BuiltIn">
+<var>${final_content}</var>
+<arg>${final_content}</arg>
+<arg>${title}</arg>
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.403362" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2025-09-25T11:42:24.403362" elapsed="0.000968"/>
+</branch>
+<status status="NOT RUN" start="2025-09-25T11:42:24.403362" elapsed="0.000968"/>
+</if>
+<kw name="Catenate" owner="BuiltIn">
+<var>${final_content}</var>
+<arg>${final_content}</arg>
+<arg>${body_content}</arg>
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.404330" elapsed="0.000000"/>
+</kw>
+<kw name="Replace String Using Regexp" owner="String">
+<var>${clean_content}</var>
+<arg>${final_content}</arg>
+<arg>\\s+</arg>
+<arg>${SPACE}</arg>
+<doc>Replaces ``pattern`` in the given ``string`` with ``replace_with``.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.404330" elapsed="0.000000"/>
+</kw>
+<kw name="Strip String" owner="String">
+<var>${clean_content}</var>
+<arg>${clean_content}</arg>
+<doc>Remove leading and/or trailing whitespaces from the given string.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.405331" elapsed="0.000000"/>
+</kw>
+<kw name="Replace String" owner="String">
+<var>${clean_content}</var>
+<arg>${clean_content}</arg>
+<arg>&amp;</arg>
+<arg>&amp;amp;</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.405331" elapsed="0.000000"/>
+</kw>
+<kw name="Replace String" owner="String">
+<var>${clean_content}</var>
+<arg>${clean_content}</arg>
+<arg>&lt;</arg>
+<arg>&amp;lt;</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.406337" elapsed="0.000000"/>
+</kw>
+<kw name="Replace String" owner="String">
+<var>${clean_content}</var>
+<arg>${clean_content}</arg>
+<arg>&gt;</arg>
+<arg>&amp;gt;</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.406337" elapsed="0.001015"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${parts}</arg>
+<arg>&lt;div style="margin:20px 0;text-align:left"&gt;&lt;h3 style="text-align:center;color:#1757C2;"&gt;Response&lt;/h3&gt;&lt;div style="background:#f5f5f5;padding:15px;border-radius:6px;font-size:14px;line-height:1.6;text-align:center;"&gt;${clean_content}&lt;/div&gt;&lt;/div&gt;</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.407352" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2025-09-25T11:42:24.395325" elapsed="0.012027"/>
+</branch>
+<branch type="ELSE">
+<kw name="Run Keyword And Ignore Error" owner="BuiltIn">
+<kw name="Evaluate" owner="BuiltIn">
+<arg>json.loads("""${text}""")</arg>
+<arg>modules=json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.408335" elapsed="0.000998"/>
+</kw>
+<msg time="2025-09-25T11:42:24.409333" level="INFO">${json_status} = PASS</msg>
+<msg time="2025-09-25T11:42:24.409333" level="INFO">${json_response} = {'cep': '01001-000', 'logradouro': 'Praça da Sé', 'complemento': 'lado ímpar', 'unidade': '', 'bairro': 'Sé', 'localidade': 'São Paulo', 'uf': 'SP', 'estado': 'São Paulo', 'regiao': 'Sudeste', 'ibge':...</msg>
+<var>${json_status}</var>
+<var>${json_response}</var>
+<arg>Evaluate</arg>
+<arg>json.loads("""${text}""")</arg>
+<arg>modules=json</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.408335" elapsed="0.000998"/>
+</kw>
+<if>
+<branch type="IF" condition="'${json_status}' == 'PASS'">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-09-25T11:42:24.411362" level="INFO">${resp_txt} = {
+    "cep": "01001-000",
+    "logradouro": "Praça da Sé",
+    "complemento": "lado ímpar",
+    "unidade": "",
+    "bairro": "Sé",
+    "localidade": "São Paulo",
+    "uf": "SP",
+    "estado": "São Pau...</msg>
+<var>${resp_txt}</var>
+<arg>json.dumps($json_response, ensure_ascii=False, indent=4)</arg>
+<arg>modules=json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.410405" elapsed="0.000957"/>
+</kw>
+<kw name="Replace String" owner="String">
+<msg time="2025-09-25T11:42:24.411362" level="INFO">${resp_escaped} = {&lt;br/&gt;    "cep": "01001-000",&lt;br/&gt;    "logradouro": "Praça da Sé",&lt;br/&gt;    "complemento": "lado ímpar",&lt;br/&gt;    "unidade": "",&lt;br/&gt;    "bairro": "Sé",&lt;br/&gt;    "localidade": "São Paulo",&lt;br/&gt;    "uf": ...</msg>
+<var>${resp_escaped}</var>
+<arg>${resp_txt}</arg>
+<arg>\n</arg>
+<arg>&lt;br/&gt;</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.411362" elapsed="0.000969"/>
+</kw>
+<kw name="Replace String" owner="String">
+<msg time="2025-09-25T11:42:24.412331" level="INFO">${resp_escaped} = {&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;"cep": "01001-000",&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;"logradouro": "Praça da Sé",&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;"complemento": "lado ímpar",&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;"unidade...</msg>
+<var>${resp_escaped}</var>
+<arg>${resp_escaped}</arg>
+<arg>${SPACE}${SPACE}</arg>
+<arg>&amp;nbsp;&amp;nbsp;</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.412331" elapsed="0.000000"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${parts}</arg>
+<arg>&lt;div style="margin:20px 0;text-align:left"&gt;&lt;h3 style="text-align:center;color:#1757C2;"&gt;Response&lt;/h3&gt;&lt;div style="background:#f5f5f5;padding:15px;border-radius:6px;font-family:'Courier New',monospace;font-size:12px;line-height:1.6;"&gt;${resp_escaped}&lt;/div&gt;&lt;/div&gt;</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.412331" elapsed="0.001507"/>
+</kw>
+<status status="PASS" start="2025-09-25T11:42:24.410405" elapsed="0.003433"/>
+</branch>
+<branch type="ELSE">
+<kw name="Replace String" owner="String">
+<var>${text_clean}</var>
+<arg>${text}</arg>
+<arg>&lt;br/&gt;</arg>
+<arg>${SPACE}</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.413838" elapsed="0.000000"/>
+</kw>
+<kw name="Replace String Using Regexp" owner="String">
+<var>${text_clean}</var>
+<arg>${text_clean}</arg>
+<arg>\\s+</arg>
+<arg>${SPACE}</arg>
+<doc>Replaces ``pattern`` in the given ``string`` with ``replace_with``.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.413838" elapsed="0.001007"/>
+</kw>
+<kw name="Strip String" owner="String">
+<var>${text_clean}</var>
+<arg>${text_clean}</arg>
+<doc>Remove leading and/or trailing whitespaces from the given string.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.414845" elapsed="0.000000"/>
+</kw>
+<kw name="Replace String" owner="String">
+<var>${text_escaped}</var>
+<arg>${text_clean}</arg>
+<arg>&amp;</arg>
+<arg>&amp;amp;</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.414845" elapsed="0.000000"/>
+</kw>
+<kw name="Replace String" owner="String">
+<var>${text_escaped}</var>
+<arg>${text_escaped}</arg>
+<arg>&lt;</arg>
+<arg>&amp;lt;</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.415876" elapsed="0.000000"/>
+</kw>
+<kw name="Replace String" owner="String">
+<var>${text_escaped}</var>
+<arg>${text_escaped}</arg>
+<arg>&gt;</arg>
+<arg>&amp;gt;</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.415876" elapsed="0.000000"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${parts}</arg>
+<arg>&lt;div style="margin:20px 0;text-align:left"&gt;&lt;h3 style="text-align:center;color:#1757C2;"&gt;Response&lt;/h3&gt;&lt;div style="background:#f5f5f5;padding:15px;border-radius:6px;font-family:'Courier New',monospace;font-size:12px;text-align:center;"&gt;${text_escaped}&lt;/div&gt;&lt;/div&gt;</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="NOT RUN" start="2025-09-25T11:42:24.416845" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2025-09-25T11:42:24.413838" elapsed="0.003007"/>
+</branch>
+<status status="PASS" start="2025-09-25T11:42:24.410405" elapsed="0.006440"/>
+</if>
+<status status="PASS" start="2025-09-25T11:42:24.407352" elapsed="0.009493"/>
+</branch>
+<status status="PASS" start="2025-09-25T11:42:24.395325" elapsed="0.021520"/>
+</if>
+<status status="PASS" start="2025-09-25T11:42:24.385350" elapsed="0.031495"/>
+</branch>
+<status status="PASS" start="2025-09-25T11:42:24.385350" elapsed="0.031495"/>
+</if>
+<kw name="Append To List" owner="Collections">
+<arg>${parts}</arg>
+<arg>&lt;hr style="border:none;border-top:2px solid #1757C2;margin:20px 0;width:80%;"&gt;</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.416845" elapsed="0.001003"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${parts}</arg>
+<arg>&lt;p style="text-align:center"&gt;&lt;i&gt;Fim do log&lt;/i&gt;&lt;/p&gt;</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.417848" elapsed="0.000000"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${parts}</arg>
+<arg>&lt;/body&gt;&lt;/html&gt;</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.418862" elapsed="0.000989"/>
+</kw>
+<kw name="Catenate" owner="BuiltIn">
+<msg time="2025-09-25T11:42:24.420854" level="INFO">${html} = &lt;html&gt;&lt;body style="font-family:Arial,Helvetica,sans-serif;max-width:820px;margin:0 auto;padding:20px;text-align:center"&gt;
+&lt;h2 style="text-align:center;color:#1757C2;margin-bottom:10px"&gt;Teste de schema ...</msg>
+<var>${html}</var>
+<arg>SEPARATOR=\n</arg>
+<arg>@{parts}</arg>
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.419851" elapsed="0.001003"/>
+</kw>
+<kw name="Html To Pdf" owner="RPA.PDF">
+<msg time="2025-09-25T11:42:24.423845" level="INFO">Writing output to file C:\workspace\Projeto_via_cep\output\pdf\Teste-de-schema-json.pdf</msg>
+<msg time="2025-09-25T11:42:24.571393" level="INFO">maxp pruned</msg>
+<msg time="2025-09-25T11:42:24.572900" level="INFO">cmap pruned</msg>
+<msg time="2025-09-25T11:42:24.575908" level="INFO">post pruned</msg>
+<msg time="2025-09-25T11:42:24.577907" level="INFO">GDEF dropped</msg>
+<msg time="2025-09-25T11:42:24.578908" level="INFO">GPOS dropped</msg>
+<msg time="2025-09-25T11:42:24.578908" level="INFO">GSUB dropped</msg>
+<msg time="2025-09-25T11:42:24.578908" level="INFO">glyf pruned</msg>
+<msg time="2025-09-25T11:42:24.579909" level="INFO">Added gid0 to subset</msg>
+<msg time="2025-09-25T11:42:24.579909" level="INFO">Added first four glyphs to subset</msg>
+<msg time="2025-09-25T11:42:24.580909" level="INFO">Closing glyph list over 'glyf': 64 glyphs before</msg>
+<msg time="2025-09-25T11:42:24.580909" level="INFO">Glyph names: ['.notdef', '.null', 'uni0020', 'uni0022', 'uni0023', 'uni0024', 'uni0027', 'uni002C', 'uni002D', 'uni002E', 'uni002F', 'uni0030', 'uni0031', 'uni0032', 'uni0033', 'uni0034', 'uni0035', 'uni0037', 'uni0038', 'uni003A', 'uni0041', 'uni004A', 'uni004C', 'uni004E', 'uni004F', 'uni0050', 'uni0052', 'uni0053', 'uni0054', 'uni005B', 'uni005C', 'uni005D', 'uni005F', 'uni0061', 'uni0062', 'uni0063', 'uni0064', 'uni0065', 'uni0066', 'uni0067', 'uni0068', 'uni0069', 'uni006A', 'uni006C', 'uni006D', 'uni006E', 'uni006F', 'uni0070', 'uni0071', 'uni0072', 'uni0073', 'uni0074', 'uni0075', 'uni0076', 'uni0077', 'uni0078', 'uni0079', 'uni007B', 'uni007D', 'uni00C4', 'uni00E3', 'uni00E7', 'uni00E9', 'uni00ED']</msg>
+<msg time="2025-09-25T11:42:24.580909" level="INFO">Glyph IDs:   [0, 1, 2, 3, 265, 280, 299, 320, 374, 382, 395, 409, 504, 535, 575, 582, 586, 594, 612, 616, 645, 650, 660, 679, 688, 707, 723, 752, 759, 775, 827, 833, 837, 867, 884, 899, 932, 936, 945, 950, 1262, 1294, 1295, 1296, 1298, 1299, 1300, 1303, 1304, 1341, 1343, 1345, 1346, 1355, 1357, 1360, 1361, 1388, 1389, 1403, 1404, 1407, 1449, 1681]</msg>
+<msg time="2025-09-25T11:42:24.580909" level="INFO">Closed glyph list over 'glyf': 68 glyphs after</msg>
+<msg time="2025-09-25T11:42:24.581909" level="INFO">Glyph names: ['.notdef', '.null', 'uni0020', 'uni0022', 'uni0023', 'uni0024', 'uni0027', 'uni002C', 'uni002D', 'uni002E', 'uni002F', 'uni0030', 'uni0031', 'uni0032', 'uni0033', 'uni0034', 'uni0035', 'uni0037', 'uni0038', 'uni003A', 'uni0041', 'uni004A', 'uni004C', 'uni004E', 'uni004F', 'uni0050', 'uni0052', 'uni0053', 'uni0054', 'uni005B', 'uni005C', 'uni005D', 'uni005F', 'uni0061', 'uni0062', 'uni0063', 'uni0064', 'uni0065', 'uni0066', 'uni0067', 'uni0068', 'uni0069', 'uni006A', 'uni006C', 'uni006D', 'uni006E', 'uni006F', 'uni0070', 'uni0071', 'uni0072', 'uni0073', 'uni0074', 'uni0075', 'uni0076', 'uni0077', 'uni0078', 'uni0079', 'uni007B', 'uni007D', 'uni00B4', 'uni00B8', 'uni00C4', 'uni00E3', 'uni00E7', 'uni00E9', 'uni00ED', 'uni0131', 'uni02DC']</msg>
+<msg time="2025-09-25T11:42:24.581909" level="INFO">Glyph IDs:   [0, 1, 2, 3, 265, 280, 299, 320, 374, 382, 395, 409, 504, 535, 575, 582, 586, 594, 612, 616, 645, 650, 660, 679, 680, 688, 707, 723, 752, 759, 775, 827, 833, 837, 867, 884, 899, 932, 936, 945, 950, 1262, 1294, 1295, 1296, 1298, 1299, 1300, 1303, 1304, 1341, 1343, 1345, 1346, 1355, 1357, 1360, 1361, 1388, 1389, 1403, 1404, 1407, 1449, 1636, 1643, 1653, 1681]</msg>
+<msg time="2025-09-25T11:42:24.581909" level="INFO">Retaining 68 glyphs</msg>
+<msg time="2025-09-25T11:42:24.582908" level="INFO">head subsetting not needed</msg>
+<msg time="2025-09-25T11:42:24.582908" level="INFO">hhea subsetting not needed</msg>
+<msg time="2025-09-25T11:42:24.582908" level="INFO">maxp subsetting not needed</msg>
+<msg time="2025-09-25T11:42:24.582908" level="INFO">OS/2 subsetting not needed</msg>
+<msg time="2025-09-25T11:42:24.582908" level="INFO">hmtx subsetted</msg>
+<msg time="2025-09-25T11:42:24.583907" level="INFO">cmap subsetted</msg>
+<msg time="2025-09-25T11:42:24.584908" level="INFO">prep subsetting not needed</msg>
+<msg time="2025-09-25T11:42:24.584908" level="INFO">loca subsetting not needed</msg>
+<msg time="2025-09-25T11:42:24.584908" level="INFO">post subsetted</msg>
+<msg time="2025-09-25T11:42:24.584908" level="INFO">gasp subsetting not needed</msg>
+<msg time="2025-09-25T11:42:24.584908" level="INFO">STAT subsetting not needed</msg>
+<msg time="2025-09-25T11:42:24.585908" level="INFO">name subsetting not needed</msg>
+<msg time="2025-09-25T11:42:24.585908" level="INFO">glyf subsetted</msg>
+<msg time="2025-09-25T11:42:24.586906" level="INFO">head pruned</msg>
+<msg time="2025-09-25T11:42:24.586906" level="INFO">OS/2 Unicode ranges pruned: [0, 1]</msg>
+<msg time="2025-09-25T11:42:24.586906" level="INFO">OS/2 CodePage ranges pruned: [0]</msg>
+<msg time="2025-09-25T11:42:24.587908" level="INFO">glyf pruned</msg>
+<msg time="2025-09-25T11:42:24.588908" level="INFO">name pruned</msg>
+<msg time="2025-09-25T11:42:24.605916" level="INFO">maxp pruned</msg>
+<msg time="2025-09-25T11:42:24.606939" level="INFO">cmap pruned</msg>
+<msg time="2025-09-25T11:42:24.606939" level="INFO">post pruned</msg>
+<msg time="2025-09-25T11:42:24.606939" level="INFO">GDEF dropped</msg>
+<msg time="2025-09-25T11:42:24.607915" level="INFO">GPOS dropped</msg>
+<msg time="2025-09-25T11:42:24.607915" level="INFO">GSUB dropped</msg>
+<msg time="2025-09-25T11:42:24.607915" level="INFO">glyf pruned</msg>
+<msg time="2025-09-25T11:42:24.608914" level="INFO">Added gid0 to subset</msg>
+<msg time="2025-09-25T11:42:24.608914" level="INFO">Added first four glyphs to subset</msg>
+<msg time="2025-09-25T11:42:24.608914" level="INFO">Closing glyph list over 'glyf': 31 glyphs before</msg>
+<msg time="2025-09-25T11:42:24.608914" level="INFO">Glyph names: ['.notdef', '.null', 'uni0020', 'uni003A', 'uni0041', 'uni0043', 'uni0045', 'uni004C', 'uni004D', 'uni0050', 'uni0052', 'uni0053', 'uni0055', 'uni0061', 'uni0063', 'uni0064', 'uni0065', 'uni0068', 'uni0069', 'uni006A', 'uni006C', 'uni006D', 'uni006E', 'uni006F', 'uni0073', 'uni0074', 'uni0075', 'uni0076', 'uni00C4', 'uni00E3', 'uni00E7']</msg>
+<msg time="2025-09-25T11:42:24.608914" level="INFO">Glyph IDs:   [0, 1, 2, 3, 73, 95, 280, 291, 374, 382, 395, 421, 504, 535, 582, 586, 594, 612, 660, 679, 707, 723, 752, 759, 775, 867, 884, 899, 932, 1407, 1681]</msg>
+<msg time="2025-09-25T11:42:24.609915" level="INFO">Closed glyph list over 'glyf': 33 glyphs after</msg>
+<msg time="2025-09-25T11:42:24.609915" level="INFO">Glyph names: ['.notdef', '.null', 'uni0020', 'uni003A', 'uni0041', 'uni0043', 'uni0045', 'uni004C', 'uni004D', 'uni0050', 'uni0052', 'uni0053', 'uni0055', 'uni0061', 'uni0063', 'uni0064', 'uni0065', 'uni0068', 'uni0069', 'uni006A', 'uni006C', 'uni006D', 'uni006E', 'uni006F', 'uni0073', 'uni0074', 'uni0075', 'uni0076', 'uni00B8', 'uni00C4', 'uni00E3', 'uni00E7', 'uni02DC']</msg>
+<msg time="2025-09-25T11:42:24.609915" level="INFO">Glyph IDs:   [0, 1, 2, 3, 73, 95, 280, 291, 374, 382, 395, 421, 504, 535, 582, 586, 594, 612, 660, 679, 707, 723, 752, 759, 775, 867, 884, 899, 932, 1407, 1643, 1653, 1681]</msg>
+<msg time="2025-09-25T11:42:24.610915" level="INFO">Retaining 33 glyphs</msg>
+<msg time="2025-09-25T11:42:24.610915" level="INFO">head subsetting not needed</msg>
+<msg time="2025-09-25T11:42:24.610915" level="INFO">hhea subsetting not needed</msg>
+<msg time="2025-09-25T11:42:24.610915" level="INFO">maxp subsetting not needed</msg>
+<msg time="2025-09-25T11:42:24.611914" level="INFO">OS/2 subsetting not needed</msg>
+<msg time="2025-09-25T11:42:24.611914" level="INFO">hmtx subsetted</msg>
+<msg time="2025-09-25T11:42:24.611914" level="INFO">cmap subsetted</msg>
+<msg time="2025-09-25T11:42:24.613421" level="INFO">prep subsetting not needed</msg>
+<msg time="2025-09-25T11:42:24.613421" level="INFO">loca subsetting not needed</msg>
+<msg time="2025-09-25T11:42:24.613421" level="INFO">post subsetted</msg>
+<msg time="2025-09-25T11:42:24.613421" level="INFO">gasp subsetting not needed</msg>
+<msg time="2025-09-25T11:42:24.613421" level="INFO">STAT subsetting not needed</msg>
+<msg time="2025-09-25T11:42:24.613421" level="INFO">name subsetting not needed</msg>
+<msg time="2025-09-25T11:42:24.614429" level="INFO">glyf subsetted</msg>
+<msg time="2025-09-25T11:42:24.614429" level="INFO">head pruned</msg>
+<msg time="2025-09-25T11:42:24.614429" level="INFO">OS/2 Unicode ranges pruned: [0, 1]</msg>
+<msg time="2025-09-25T11:42:24.615426" level="INFO">OS/2 CodePage ranges pruned: [0]</msg>
+<msg time="2025-09-25T11:42:24.615426" level="INFO">glyf pruned</msg>
+<msg time="2025-09-25T11:42:24.616426" level="INFO">name pruned</msg>
+<msg time="2025-09-25T11:42:24.625435" level="INFO">maxp pruned</msg>
+<msg time="2025-09-25T11:42:24.626427" level="INFO">cmap pruned</msg>
+<msg time="2025-09-25T11:42:24.626427" level="INFO">post pruned</msg>
+<msg time="2025-09-25T11:42:24.626427" level="INFO">GDEF dropped</msg>
+<msg time="2025-09-25T11:42:24.626427" level="INFO">GPOS dropped</msg>
+<msg time="2025-09-25T11:42:24.626427" level="INFO">GSUB dropped</msg>
+<msg time="2025-09-25T11:42:24.627430" level="INFO">glyf pruned</msg>
+<msg time="2025-09-25T11:42:24.629428" level="INFO">Added gid0 to subset</msg>
+<msg time="2025-09-25T11:42:24.629428" level="INFO">Added first four glyphs to subset</msg>
+<msg time="2025-09-25T11:42:24.629428" level="INFO">Closing glyph list over 'glyf': 11 glyphs before</msg>
+<msg time="2025-09-25T11:42:24.630428" level="INFO">Glyph names: ['.notdef', '.null', 'uni0020', 'uni0046', 'uni0064', 'uni0067', 'uni0069', 'uni006C', 'uni006D', 'uni006F', 'uni00A0']</msg>
+<msg time="2025-09-25T11:42:24.630428" level="INFO">Glyph IDs:   [0, 1, 2, 3, 140, 563, 618, 647, 691, 720, 743]</msg>
+<msg time="2025-09-25T11:42:24.630428" level="INFO">Closed glyph list over 'glyf': 13 glyphs after</msg>
+<msg time="2025-09-25T11:42:24.630428" level="INFO">Glyph names: ['.notdef', '.null', 'uni0020', 'uni0046', 'uni0064', 'uni0067', 'uni0069', 'uni006C', 'uni006D', 'uni006F', 'uni00A0', 'uni0131', 'uni02D9']</msg>
+<msg time="2025-09-25T11:42:24.630428" level="INFO">Glyph IDs:   [0, 1, 2, 3, 140, 563, 618, 647, 648, 691, 720, 743, 1601]</msg>
+<msg time="2025-09-25T11:42:24.631426" level="INFO">Retaining 13 glyphs</msg>
+<msg time="2025-09-25T11:42:24.631426" level="INFO">head subsetting not needed</msg>
+<msg time="2025-09-25T11:42:24.631426" level="INFO">hhea subsetting not needed</msg>
+<msg time="2025-09-25T11:42:24.631426" level="INFO">maxp subsetting not needed</msg>
+<msg time="2025-09-25T11:42:24.631426" level="INFO">OS/2 subsetting not needed</msg>
+<msg time="2025-09-25T11:42:24.632431" level="INFO">hmtx subsetted</msg>
+<msg time="2025-09-25T11:42:24.632431" level="INFO">cmap subsetted</msg>
+<msg time="2025-09-25T11:42:24.633428" level="INFO">loca subsetting not needed</msg>
+<msg time="2025-09-25T11:42:24.633428" level="INFO">post subsetted</msg>
+<msg time="2025-09-25T11:42:24.633428" level="INFO">name subsetting not needed</msg>
+<msg time="2025-09-25T11:42:24.633428" level="INFO">glyf subsetted</msg>
+<msg time="2025-09-25T11:42:24.634427" level="INFO">head pruned</msg>
+<msg time="2025-09-25T11:42:24.634427" level="INFO">OS/2 Unicode ranges pruned: [0]</msg>
+<msg time="2025-09-25T11:42:24.635433" level="INFO">OS/2 CodePage ranges pruned: [0]</msg>
+<msg time="2025-09-25T11:42:24.635433" level="INFO">glyf pruned</msg>
+<msg time="2025-09-25T11:42:24.635433" level="INFO">name pruned</msg>
+<msg time="2025-09-25T11:42:24.640428" level="INFO">maxp pruned</msg>
+<msg time="2025-09-25T11:42:24.641428" level="INFO">cmap pruned</msg>
+<msg time="2025-09-25T11:42:24.641428" level="INFO">post pruned</msg>
+<msg time="2025-09-25T11:42:24.641428" level="INFO">GDEF dropped</msg>
+<msg time="2025-09-25T11:42:24.641428" level="INFO">GPOS dropped</msg>
+<msg time="2025-09-25T11:42:24.641428" level="INFO">GSUB dropped</msg>
+<msg time="2025-09-25T11:42:24.642429" level="INFO">glyf pruned</msg>
+<msg time="2025-09-25T11:42:24.644429" level="INFO">Added gid0 to subset</msg>
+<msg time="2025-09-25T11:42:24.644429" level="INFO">Added first four glyphs to subset</msg>
+<msg time="2025-09-25T11:42:24.644429" level="INFO">Closing glyph list over 'glyf': 4 glyphs before</msg>
+<msg time="2025-09-25T11:42:24.645428" level="INFO">Glyph names: ['.notdef', '.null', 'uni0020', 'uni00A0']</msg>
+<msg time="2025-09-25T11:42:24.645428" level="INFO">Glyph IDs:   [0, 1, 2, 3]</msg>
+<msg time="2025-09-25T11:42:24.645428" level="INFO">Closed glyph list over 'glyf': 4 glyphs after</msg>
+<msg time="2025-09-25T11:42:24.645428" level="INFO">Glyph names: ['.notdef', '.null', 'uni0020', 'uni00A0']</msg>
+<msg time="2025-09-25T11:42:24.645428" level="INFO">Glyph IDs:   [0, 1, 2, 3]</msg>
+<msg time="2025-09-25T11:42:24.646428" level="INFO">Retaining 4 glyphs</msg>
+<msg time="2025-09-25T11:42:24.646428" level="INFO">head subsetting not needed</msg>
+<msg time="2025-09-25T11:42:24.646428" level="INFO">hhea subsetting not needed</msg>
+<msg time="2025-09-25T11:42:24.646428" level="INFO">maxp subsetting not needed</msg>
+<msg time="2025-09-25T11:42:24.647429" level="INFO">OS/2 subsetting not needed</msg>
+<msg time="2025-09-25T11:42:24.647429" level="INFO">hmtx subsetted</msg>
+<msg time="2025-09-25T11:42:24.647429" level="INFO">cmap subsetted</msg>
+<msg time="2025-09-25T11:42:24.648427" level="INFO">loca subsetting not needed</msg>
+<msg time="2025-09-25T11:42:24.648427" level="INFO">post subsetted</msg>
+<msg time="2025-09-25T11:42:24.648427" level="INFO">name subsetting not needed</msg>
+<msg time="2025-09-25T11:42:24.648427" level="INFO">glyf subsetted</msg>
+<msg time="2025-09-25T11:42:24.649426" level="INFO">head pruned</msg>
+<msg time="2025-09-25T11:42:24.649426" level="INFO">OS/2 Unicode ranges pruned: [0]</msg>
+<msg time="2025-09-25T11:42:24.649426" level="INFO">OS/2 CodePage ranges pruned: [0]</msg>
+<msg time="2025-09-25T11:42:24.649426" level="INFO">glyf pruned</msg>
+<msg time="2025-09-25T11:42:24.650426" level="INFO">name pruned</msg>
+<arg>${html}</arg>
+<arg>${out}</arg>
+<doc>Generate a PDF file from HTML content.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.421845" elapsed="0.235585"/>
+</kw>
+<return>
+<value>${out}</value>
+<status status="PASS" start="2025-09-25T11:42:24.657430" elapsed="0.000000"/>
+</return>
+<msg time="2025-09-25T11:42:24.658432" level="INFO">${pdf} = output/pdf/Teste-de-schema-json.pdf</msg>
+<var>${pdf}</var>
+<arg>nome_consulta=${nome}</arg>
+<arg>cep=${cep}</arg>
+<arg>response=${response}</arg>
+<arg>status=${status}</arg>
+<arg>url_utilizada=${url}</arg>
+<arg>metodo=${metodo}</arg>
+<arg>headers=${headers}</arg>
+<arg>out=${out}</arg>
+<arg>tempo_ms=${tempo_ms}</arg>
+<arg>mensagem=${mensagem}</arg>
+<status status="PASS" start="2025-09-25T11:42:24.361801" elapsed="0.296631"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>PDF gerado: ${pdf}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-09-25T11:42:24.658432" elapsed="0.001000"/>
+</kw>
+<arg>Teste de schema json</arg>
+<arg>01001000</arg>
+<arg>${response}</arg>
+<arg>${status}</arg>
+<arg>${url_utilizada}</arg>
+<arg>${None}</arg>
+<arg>${None}</arg>
+<arg>${None}</arg>
+<arg>${mensagem}</arg>
+<status status="PASS" start="2025-09-25T11:42:24.355805" elapsed="0.303627"/>
+</kw>
+<status status="PASS" start="2025-09-25T11:42:23.954175" elapsed="0.706253"/>
+</test>
+<status status="PASS" start="2025-09-25T11:42:23.209218" elapsed="1.452213"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Test Cep" id="s1" pass="1" fail="0" skip="0">Test Cep</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

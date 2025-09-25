@@ -2,3 +2,4 @@ robotframework
 robotframework-requests
 rpaframework-pdf
 jsonschema
+weasyprint
