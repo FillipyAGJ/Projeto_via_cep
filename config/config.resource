@@ -4,7 +4,7 @@ Library    Collections
 Library    RPA.PDF
 Library    DateTime
 Library    OperatingSystem
-Library    AllureLibrary
+#Library    AllureLibrary
 Library    ../libs/schema_keywords.py
 
 *** Variables ***

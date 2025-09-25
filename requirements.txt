@@ -1,11 +1,5 @@
 robotframework
 robotframework-requests
-<<<<<<< HEAD
 rpaframework-pdf
 jsonschema
 weasyprint
-=======
-rpaframework-pdf==8.0.1
-jsonschema
-pypdf==3.1.0
->>>>>>> f7c03bb9e180d45850c90b339ebc2fe37f54afa5

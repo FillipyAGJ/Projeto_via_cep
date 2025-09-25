@@ -5,13 +5,8 @@ Resource    ../request/request.robot
 *** Keywords ***
 
 Gerar PDF deste teste
-<<<<<<< HEAD
     [Arguments]    ${nome}    ${cep}=None    ${response}=None    ${status}=None    ${url}=None    ${metodo}=None
     ...    ${headers}=None    ${tempo_ms}=None    ${mensagem}=None
-=======
-    [Arguments]    ${nome}=${None}    ${cep}=${None}    ${response}=${None}    ${status}=${None}    ${url}=${None}
-    ...    ${metodo}=${None}    ${headers}=${None}    ${tempo_ms}=${None}
->>>>>>> f7c03bb9e180d45850c90b339ebc2fe37f54afa5
     Create Directory    output/pdf
     # Gera o nome do arquivo PDF
     ${safe_nome}=    Replace String    ${nome}    ${SPACE}    -
@@ -28,16 +23,7 @@ Gerar PDF deste teste
     ...    metodo=${metodo}
     ...    headers=${headers}
     ...    tempo_ms=${tempo_ms}
-<<<<<<< HEAD
     ...    mensagem=${mensagem}
-=======
-    ...    out=${pdf_path}
-
-    Attach File     ${pdf_path}    name=Relatório ${nome}    attachment_type=application/pdf
-
-    Log    PDF gerado em: ${pdf_path}
-    RETURN    ${pdf_path}
->>>>>>> f7c03bb9e180d45850c90b339ebc2fe37f54afa5
 
 
 
