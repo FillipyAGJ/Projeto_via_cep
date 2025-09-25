@@ -5,6 +5,8 @@ Resource    ./gerar_pdf.resource
 
 *** Variables ***
 ${CEP_SCHEMA_PATH}    ${CURDIR}/../../schemas/cep_schema.json
+${PDF_PATH}    output/test_report.pdf
+${ALLURE_RESULTS}    output/allure-results
 
 *** Keywords ***
 Consulta CEP valido
@@ -80,12 +82,22 @@ Teste tempo CEP válido
     Should Be True    $secs < 2    msg=Tempo de resposta ${secs}s >= 2s
 
     # teardown gera o PDF com o tempo
+<<<<<<< HEAD
     [Teardown]    _Gerar PDF deste teste    CEP válido ${cep} com tempo de resposta    ${cep}    ${response}    ${status}    ${url}    ${metodo}    ${headers}    ${tempo_ms}
+=======
+    ${pdf}    _Gerar PDF deste teste    Tempo CEP válido    ${cep}    ${response}    ${status}    ${url}    ${metodo}    ${headers}    ${tempo_ms}
+    [Teardown]    Adicionar PDF ao Relatório    ${pdf}
+>>>>>>> f7c03bb9e180d45850c90b339ebc2fe37f54afa5
 
 Teste CEP inexistente
     [Arguments]    ${cep}
     ${response}    ${status}    ${url}    ${metodo}    ${headers}=    Valida CEP    ${cep}
+<<<<<<< HEAD
     [Teardown]    _Gerar PDF deste teste    CEP inexistente ${cep}     ${cep}    ${response}    ${status}    ${url}    ${metodo}    ${headers}
+=======
+    ${pdf}    _Gerar PDF deste teste    CEP inexistente     ${cep}    ${response}    ${status}    ${url}    ${metodo}    ${headers}
+    [Teardown]    Adicionar PDF ao Relatório    ${pdf}
+>>>>>>> f7c03bb9e180d45850c90b339ebc2fe37f54afa5
 
 
 Teste tempo CEP malformado
@@ -96,4 +108,17 @@ Teste tempo CEP malformado
     # mesmo sendo 4xx, ainda precisa ser rápido
     Should Be True    $secs < 2    msg=Tempo de resposta ${secs}s >= 2s (malformado)
 
+<<<<<<< HEAD
     [Teardown]    _Gerar PDF deste teste    CEP malformado ${cep} com tempo de resposta     ${cep}    ${response}    ${status}    ${url}    ${metodo}    ${headers}    ${tempo_ms}
+=======
+    ${pdf}    _Gerar PDF deste teste    Tempo CEP malformado     ${cep}    ${response}    ${status}    ${url}    ${metodo}    ${headers}    ${tempo_ms}
+    [Teardown]    Adicionar PDF ao Relatório    ${pdf}
+
+
+Adicionar PDF ao Relatório
+    [Arguments]    ${pdf_path}
+    Run Keyword If    '${pdf_path}' == ''    Fail    PDF path is empty.
+    File Should Exist    ${pdf_path}    # Verifica se o arquivo existe antes de anexar
+    Log    PDF adicionado ao relatório: ${pdf_path}
+    Attach File    ${pdf_path}    application/pdf
+>>>>>>> f7c03bb9e180d45850c90b339ebc2fe37f54afa5
